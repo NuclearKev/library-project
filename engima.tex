@@ -1,0 +1,298 @@
+\documentclass[12pt,a4paper,titlepage]{article}
+
+\usepackage{times}
+\usepackage{setspace}
+\usepackage{textcomp}
+\usepackage[toc,page]{appendix}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{siunitx}
+
+\doublespacing
+\voffset = -25pt
+\headsep = 35pt
+\oddsidemargin = 0pt
+\topmargin = 0pt
+\marginparwidth = 0pt
+\textwidth = 450pt
+\textheight = 625pt
+
+\begin{document}
+
+\pagestyle{headings}
+\setcounter{page}{1}
+
+%---Title Page---%
+\thispagestyle{empty}
+
+\begin{flushleft}
+\vspace*{1.5in}
+
+{\huge LRC Circuit Report}
+
+\vspace{0.25in}
+
+{\Large Kevin Bloom}
+
+\vspace{0.25in}
+
+\vfill
+
+\end{flushleft}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Objectives}
+There were a handful of objectives for this lab. Each either refreshing our
+memories with old material or applying newer concepts that we have yet to
+master. The first objective was a throwback to our Freshman days with Karl.
+We needed to calculate the impedances, current, and voltages of all the
+components in the circuit. With these values ready for comparison, we used
+PSpice to model the circuit. The next objective was to build the circuit and
+measure values with a DMM (to compare with the calculated). Lastly, 
+we attempted to better our results by redoing the calculations with the actual
+measured values of the components. 
+
+
+\section{Calculations}
+In this section, we will go through the calculations that I did. Most of this
+section will be copied straight from my hand written copy just typed so it
+looks nice and is easy to read.
+
+\subsection{Nominal}
+To start, we must first find all the impedances in the circuit. We start by finding
+the capacitance and inductive reactance of the cap and inductor.
+\begin{align*}
+  X_C &= \frac{-j}{2\pi f C} \\
+  &= \frac{-j}{2\pi (1000) (.033\si{\micro \farad})} \\
+  &= -j4.823\si{\kilo \ohm}
+\end{align*}
+\begin{align*}
+  X_L &= j2\pi f L \\
+  &= j2\pi (1000) (940\si{\milli \henry}) \\
+  &= j5.906\si{\kilo \ohm}
+\end{align*}
+Next we simply throw these values into the impedance form (including the resistor).
+\begin{align*}
+  Z_C &= 0 - j4.823\si{\kilo \ohm} \\
+  &= 4.823\si{\kilo \ohm} \angle {-90}^{\circ} \\
+  Z_L &= 0 + j5.906\si{\kilo \ohm} \\
+  &= 5.906\si{\kilo \ohm} \angle 90^{\circ} \\
+  Z_R &= 2.4\si{\kilo \ohm} \angle 0^{\circ}
+\end{align*}
+Now that we have all the impedances we can add them up to get the total and divide
+by the total voltage (our source) to get us the current of this circuit.
+\begin{align*}
+  Z_T &= Z_C + Z_L + Z_R \\
+  &= 4.823\si{\kilo \ohm} \angle {-90}^{\circ} + 5.906\si{\kilo \ohm} \angle 90^{\circ} + 2.4\si{\kilo \ohm} \angle 0^{\circ} \\
+  &= 2.633\si{\kilo \ohm} \angle 24.294^{\circ} \\
+  I_\text{AC} &= \frac{\si{\volt}_\text{AC}}{Z_T} \\
+  &= \frac{\frac{3.4\sqrt{2}}{2}\si{\volt}_\text{AC}}{2.633\si{\kilo \ohm} \angle 24.294^{\circ}} \\
+  &= 913.03\si{\micro \ampere}_\text{AC} \angle {-24.294}^{\circ}
+\end{align*}
+Now that we have successfully calculated the series current, we can use Ohm's Law
+to bust out the voltage drops across those components.
+\begin{align*}
+  V_C &= I_\text{AC}Z_C \\
+  &= (913.03\si{\micro \ampere}_\text{AC} \angle {-24.294}^{\circ})(4.823\si{\kilo \ohm} \angle {-90}^{\circ}) \\
+  &= 4.403\si{\volt}_\text{AC} \angle {-114.294}^{\circ} \\
+  V_L &= I_\text{AC}Z_L \\
+  &= (913.03\si{\micro \ampere}_\text{AC} \angle {-24.294}^{\circ})(5.906\si{\kilo \ohm} \angle 90^{\circ}) \\
+  &= 5.393\si{\volt}_\text{AC} \angle 65.706^{\circ} \\
+  V_R &= I_\text{AC}Z_R \\
+  &= (913.03\si{\micro \ampere}_\text{AC} \angle {-24.294}^{\circ})(2.4\si{\kilo \ohm} \angle 0^{\circ}) \\
+  &= 2.191\si{\volt}_\text{AC} \angle {-24.294}^{\circ}
+\end{align*}
+Lastly, to find the voltage a point Q with respect to ground, we can add the voltage drops across the resistor and the inductor.
+\begin{align*}
+  V_Q &= V_R + V_L \\
+  &= 5.393\si{\volt}_\text{AC} \angle 65.706^{\circ} + 2.191\si{\volt}_\text{AC} \angle {-24.294}^{\circ} \\
+  &= 5.821\si{\volt}_\text{AC} \angle 43.592^{\circ}
+\end{align*}
+
+
+\subsection{Actual}
+In order to get a better model of the circuit, I recalculated all the values
+but with the actual measured values of the components, rather than the nominal
+ones. The values that I measured from each components are as listed below.
+\begin{align*}
+  C &= .035\si{\micro \farad} \\
+  L &= 950\si{\milli \henry} \\
+  R_L &= 368.76\Omega \\
+  R &= 2.396\si{\kilo \ohm}
+\end{align*}
+If we use these values instead of the nominal values we should get values that
+more closely resemble our measured values. I did the same exact work and ended
+up with the following values.
+\begin{align*}
+  Z_C &= 4.547\si{\kilo \ohm} \angle {-90}^{\circ} \\
+  Z_L &= 5.980\si{\kilo \ohm} \angle 86.465^{\circ} \\
+  Z_R &= 2.396\si{\kilo \ohm} \angle 0^{\circ} \\
+  Z_T &= 3.109\si{\kilo \ohm} \angle 27.214^{\circ} \\ 
+  I_\text{AC} &= 773.317\si{\micro \ampere}_\text{AC} \angle {-27.214}^{\circ} \\ 
+  V_C &= 3.516\si{\volt}_\text{AC} \angle {-117.214}^{\circ} \\
+  V_L &= 4.626\si{\volt}_\text{AC} \angle 59.251^{\circ} \\ 
+  V_R &= 1.853\si{\volt}_\text{AC} \angle {-27.214}^{\circ} \\
+  V_Q &= 5.087\si{\volt}_\text{AC} \angle 37.933^{\circ}
+\end{align*}
+
+
+\section{Comparison Between Calculations and Measured Values}
+
+\subsection{Numerical Analysis}
+Before we start talking about the discrepancies between the theoretical and
+measured values, I should probably actually display my measured values.
+\begin{align*}
+  V_C &= 2.912 \si{\volt}_\text{AC} \\
+  V_L &= 3.994 \si{\volt}_\text{AC} \\
+  V_R &= 1.544 \si{\volt}_\text{AC} \\
+  V_Q &= 5.538 \si{\volt}_\text{AC}
+\end{align*}
+
+If we compare these values to what we got when we used nominal values to
+calculate theoretical values you will notice something isn't right. $V_C$ is off
+by $1.491\si{\volt}_\text{AC}$, $V_L$ is off by $1.399\si{\volt}_\text{AC}$, and $V_R$ is off by $647\si{\milli \volt}_\text{AC}$.
+These are percent differences of $33.863\%$, $25.941\%$, and $29.53\%$,
+respectively. These are huge errors! What is going on here!? Well, before we
+get our underwear in a bunch lets look at the actual calculations and seen if
+they're better. However, what you will see is that they aren't much better.
+With percent errors of $17.179\%$, $13.662\%$, and $16.676\%$, respectively.
+This is still a huge amount of error; lets see if we can figure out what might
+be causing this error.
+
+Well first and foremost, there is a small amount of error from the get go. Was
+the function generator set exactly to $1\si{\kilo \hertz}$? Can the function generator even
+output an exact wave? Was the amplitude exactly $3.4\si{\volt}_{P}$? The answer to these
+questions are obviously no. However, this would only cause a slight error,
+because we are talking being a few Hertz or a few millivolts off. Also, our
+cap and resistor seemed to be pretty close; the resistor only being off by about
+$0.06\%$. However, I believe the culprit for our skewed data, is the inductor.
+Why you ask? Well, since there is no such thing as a $940\si{\milli \henry}$ inductor, we had
+to construct our own equivalent inductance value by using series inductors.
+When we measured the inductance of this series inductor chain, it bounced around
+$940\si{\milli \henry}$ to $960\si{\milli \henry}$. With this big of a tolerance, we could see a huge error in
+out measured data. Not to mention that when we use the nominal value for the
+inductor we miss out on the winding resistance. As you can see in the actual
+calculations, they are much closer than when we used the nominal.
+This is why there is such a huge error when comparing our theoretical data to
+our measured data.
+
+\subsection{Waveform Analysis}
+Now that we have figured out where our error is coming from when comparing the
+numbers, lets take a look at our waveforms and see how they compare. You can see
+the waveforms in the Appendix (PSpice in Appendix A and measured in Appendix B).
+According to Appendix A, $V_Q$ (A.1) has a phase of about $48^{\circ}$ and $V_L$ (A.2) has
+a phase of $72^{\circ}$. When compared to our nominal calculated phases, they are off by
+about $11^{\circ}$ and $13^{\circ}$, respectively. According to Appendix A.2,
+they have very similar phases, possibly being off by a few decimals. However, if
+we compare our actual component value calculations to those phases, we get less
+error! They are only off by about $5^{\circ}$ and $7^{\circ}$, respectively.
+
+Lets take a look at our measured waveforms and see how they compare to our
+calculated and PSpice waveforms. According to Appendix B, $V_Q$ (B.1) has a phase
+of about $36^{\circ}$ and $V_L$ (B.2) has a phase of about $72^{\circ}$. Comparing
+these values to our nominal calculations we see a difference of about $7^{\circ}$
+for both phases. If we look at our actual component value calculations, we see
+a difference of about $1^{\circ}$ (best one yet) and $13^{\circ}$, respectively.
+
+Once again we are seeing large errors in our data. I believe that the inductors
+are the culprit in this case as well. In fact, we can almost for sure say it's the
+inductors because of the error in the phase angles.
+
+
+\section{Conclusion}
+In this section we will tie up some loose ends and answers a few possible
+questions we might pose in during or after the lab.
+
+\subsection{Nominal vs Actual in Calculations}
+As we saw in the numerical and waveform analysis sections, we generally saw
+that our actual calculations contained less error than the nominal ones. What
+this means is that it is better use the actual measured values of your
+components than using the nominal values in a schematic. If the planets align
+in the right way, you should see a dramatic decrease in error from doing this.
+In our case, the planets didn't align all the way and we still saw a lot of
+error in our data. Luckily, we have narrowed it down to the inductor chain
+that was causing this nonsense. 
+
+\subsection{Tolerances of Measuring Instruments}
+I know we blamed most of the error on the inductors but there is still a minuscule
+amount of error coming from the test equipment itself. In the numerical analysis
+we talked about how the function generator could have been causing small amounts
+of error, but what about the DMM or oscilloscope? When taking measurements with
+a DMM, there is also extra resistance from the leads. This can easily skew
+resistance data or even voltage/current data as well. Not to mention that the
+device itself can only be so accurate. The DMM might round a couple decimals
+or just flat out not be able to read accurately enough to get a close to perfect
+measurement. The oscilloscope on the other hand has a larger amount of error.
+Mainly because it relies on the operator to read (as accurately as he/she can)
+the values off the screen rather than spitting out an ``exact'' number. As you
+can see, we can't ignore these errors, even though they are small.
+
+\subsection{Proving KVL using DMM values}
+In theory, we should be able to add up all the voltage drops across the
+components and end up with the magnitude of the source. However, if we try this
+with the measured values that I took, you'll see this isn't true. Why doesn't
+this work? Did Kirchoff lie to me?! No, he didn't. The reason this doesn't
+work is because of the phase shifts. We must include the phases in our
+calculation if we wish to see KVL actually work. If you attempt to ball park
+the phases for the measured voltages, you'll see that you get close to the 
+source value. If we were to have the exact phases for
+these values, we would see the KVL works perfectly. However, this is not the
+case.
+
+\subsection{Versatility of Instruments}
+Throughout this lab, we switched between a DMM and oscilloscope a couple of times.
+This is a good example on how these instruments are very versatile; mainly the
+DMM. We can use the DMM to measure voltage (DC and AC), current (DC and AC),
+resistance (2-wire and 4-wire), frequency, and much more. These high quality
+DMMs can really do it all. The oscilloscope on the other hand is a little more
+versatile but still has cons. We can measure just about everything the DMM
+can but we lack the accuracy. Also, the oscilloscope has an added bonus,
+namely, waveforms. We can actually see what the wave looks like right on the
+screen. Each of these pieces of equipment have their pros and cons, which is
+why it's good to have both and pick which one you want to use based on the
+problem at hand.
+
+\newpage
+
+\appendix
+
+\section{Appendix: PSpice Waveforms}
+
+\subsection{Nominal Component Values}
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=150mm]{/Users/kevin/Desktop/pspice-waveform.png}
+\caption{Green: $V_S$, Red: $V_Q$, Blue: $V_L$ \label{overflow}}
+\end{figure}
+
+\subsection{Actual Component Values}
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=150mm]{/Users/kevin/Desktop/actual-values-waveform.png}
+\caption{Green: $V_S$, Red: $V_Q$, Blue: $V_L$ \label{overflow}}
+\end{figure}
+
+\section{Appendix: Oscilloscope Waveforms}
+
+\subsection{$V_L$ with $V_S$}
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=90mm]{/Users/kevin/Downloads/IMG_0792.JPG}
+\caption{Yellow: $V_S$, Green: $V_Q$ \label{overflow}}
+\end{figure}
+
+
+\subsection{$V_Q$ with $V_S$}
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=90mm]{/Users/kevin/Downloads/IMG_0793.JPG}
+\caption{Yellow: $V_S$, Green: $V_L$ \label{overflow}}
+\end{figure}
+
+
+\end{document}
