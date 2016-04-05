@@ -7,6 +7,16 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{siunitx}
+\usepackage[english]{babel}
+\usepackage{biblatex}
+\usepackage{csquotes}
+
+\usepackage[bookmarks]{hyperref}
+\hypersetup{colorlinks=true,allcolors=black}
+\usepackage{hypcap}
+
+
+\bibliography{sources.bib}
 
 \doublespacing
 \voffset = -25pt
@@ -47,6 +57,7 @@
 \newpage
 
 \section{Introduction}
+This is a test~\cite{hold}.
 
 \section{History}
 
@@ -60,36 +71,8 @@
 
 \section{Appendix: PSpice Waveforms}
 
-%% \subsection{Nominal Component Values}
-%% \begin{figure}[ht!]
-%% \centering
-%% \includegraphics[width=150mm]{/Users/kevin/Desktop/pspice-waveform.png}
-%% \caption{Green: $V_S$, Red: $V_Q$, Blue: $V_L$ \label{overflow}}
-%% \end{figure}
-
-%% \subsection{Actual Component Values}
-%% \begin{figure}[ht!]
-%% \centering
-%% \includegraphics[width=150mm]{/Users/kevin/Desktop/actual-values-waveform.png}
-%% \caption{Green: $V_S$, Red: $V_Q$, Blue: $V_L$ \label{overflow}}
-%% \end{figure}
-
-%% \section{Appendix: Oscilloscope Waveforms}
-
-%% \subsection{$V_L$ with $V_S$}
-%% \begin{figure}[ht!]
-%% \centering
-%% \includegraphics[width=90mm]{/Users/kevin/Downloads/IMG_0792.JPG}
-%% \caption{Yellow: $V_S$, Green: $V_Q$ \label{overflow}}
-%% \end{figure}
-
-
-%% \subsection{$V_Q$ with $V_S$}
-%% \begin{figure}[ht!]
-%% \centering
-%% \includegraphics[width=90mm]{/Users/kevin/Downloads/IMG_0793.JPG}
-%% \caption{Yellow: $V_S$, Green: $V_L$ \label{overflow}}
-%% \end{figure}
+\newpage
+\printbibliography
 
 
 \end{document}
