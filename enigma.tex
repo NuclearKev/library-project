@@ -132,6 +132,25 @@ understand the methods but they somehow use double random phase encoding and
 hologram to encrypt the image~\cite{shimobaba2015optical}.
 
 \section{Decryption Methods}
+Decryption is the act of undoing an encryption in order to view the contents of
+the encrypted package. In other words, decryption converts the content back in
+its original form~\cite{deshpande2009fpga}. In the case of the Enigma,
+decryption was dealt by setting the receiving machine to the same settings as
+the transmitting machine. You then would type in the encrypted message and the
+correct getter's bulb would light up. You would then have someone write the
+deciphered message down~\cite{wilcox2006solving}.
+
+Since then, decryption techniques have improved greatly. Every encryption
+method has its own way of decrypting. This is one way that each method stays
+different, reducing the possibility of breaking the code. A standard AES
+algorithm is capable of decrypting encrypted messages in 128 bit blocks
+~\cite{deshpande2009fpga}. In order to actually decrypt an AES encrypted package
+you must first have the correct key. Then, a series of inverse substitutions,
+row shifts, column moves, and reversing of row and column orders are done. This
+algorithm is called the \emph{straightforward decryption algorithm}
+~\cite{daemen2013design}. As you can see, most decryption techniques are not
+very simple and require a lot of math in order to successfully decrypt the
+package.
 
 
 \section{Encryption and the Government}
@@ -161,11 +180,6 @@ government is trying to control encryption. If this would have happened, the
 government would have set a precedent whereby any device could be broken into 
 with the manufactures help. This would make no ones information 
 safe~\cite{herman2016fbi}. 
-
-
-\section{Global Collaboration}
-
-
 
 \newpage
 
