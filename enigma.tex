@@ -8,7 +8,7 @@
 \usepackage{amsmath}
 \usepackage{siunitx}
 \usepackage[english]{babel}
-\usepackage{biblatex}
+\usepackage[backend=biber]{biblatex}
 \usepackage{csquotes}
 
 \usepackage[bookmarks]{hyperref}
@@ -114,6 +114,7 @@ trying to do secure transfer of data between two sources that have never met,
 you'll want to use something with a private and public keys. If you're trying 
 to encrypt data on your hard drive, private public keys don't even make sense. 
 
+\subsection{AES}
 One method of encrypting is the Advanced Encryption Standard (AES)\@. It was 
 created by the U.S. National Institute of Standards and Technology (NIST) in 
 2001. Originally it was used for documents that contained ``sensitive but not 
@@ -121,6 +122,16 @@ classified'' information~\cite{daemen2013design}. AES was meant to replace DES
 which was used for banks, industry, and administration around the world. So it 
 was clear that the AES was going to expand beyond its original intent. The AES 
 is the only encryption standard approved by the NSA~\cite{daemen2013design}.
+
+\subsection{Images}
+In addition to encrypting text, it is also useful to encrypt images. Apple 
+encrypts images that are sent over its iMessage service. Tomoyoshi Shimobaba, 
+talks about two methods for encrypting images in his Graduate Thesis.  The two 
+methods are ``random phase-free method and scaled diffraction'' 
+\cite{shimobaba2015optical}. These methods are meant for large images. I don't 
+understand the methods but they somehow use double random phase encoding and 
+hologram to encrypt the image~\cite{shimobaba2015optical}.
+
 
 \section{Something Else}
 
@@ -134,7 +145,10 @@ is the only encryption standard approved by the NSA~\cite{daemen2013design}.
 \appendix
 
 \newpage
-\printbibliography
+\printbibliography[
+heading=bibintoc,
+title={Resources}
+]
 
 
 \end{document}
