@@ -7,14 +7,10 @@
 7.) http://aturingmachine.com (idk)
 
 #others
-1. http://www.lexisnexis.com.ezproxy.pct.edu/lnacui2api/results/docview/docview.do?docLinkInd=true&risb=21_T23812892845&format=GNBFI&sort=RELEVANCE&startDocNo=1&resultsUrlKey=29_T23812892849&cisb=22_T23812892848&treeMax=true&treeWidth=0&csi=153047&docNo=1
-
+1. http://i-n-w.org/talking_collaboration/innovation.pdf
 2. https://books.google.com/books?hl=en&lr=&id=fNaoCAAAQBAJ&oi=fnd&pg=PA1&dq=encryption&ots=7hLPBLQjp7&sig=4cOjEW4jZ2MXM14Gc40Wgn7KreI#v=onepage&q=encryption&f=false
 
 3. https://www.osapublishing.org/ol/abstract.cfm?uri=ol-20-7-767
-
-4. http://heinonline.org/HOL/LandingPage?handle=hein.journals/wmbrts4&div=32&id=&page=
-
-5. http://www.apple.com/pr/library/2016/03/03Amicus-Briefs-in-Support-of-Apple.html#labnol
-
-
+4. http://scholarship.law.wm.edu/cgi/viewcontent.cgi?article=1484&context=wmborj
+5. http://eprints.lse.ac.uk/65842/
+6. https://www.google.com/patents/US5068895
